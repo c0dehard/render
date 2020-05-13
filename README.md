@@ -1,4 +1,7 @@
+
+
 # Example if you'd like to use **render** for [gscloud](https://github.com/gridscale/gscloud)
+
 ```go
 func main(){
   config := gsclient.NewConfiguration(
@@ -14,7 +17,11 @@ func main(){
 	ctx := context.Background()
 
 	out := new(bytes.Buffer)
-  
+```
+### List Servers
+___
+
+```go
 	servers, _ := client.GetServerList(ctx)
 	var serverinfos [][]string
 	for _, server := range servers {
@@ -30,6 +37,30 @@ func main(){
 		serverinfos = append(serverinfos, fill...)
 
 	}
+```
+### List Networks
+___
+
+```go
+
+	network, _ := client.GetNetworkList(ctx)
+	var networkinfos [][]string
+	for _, netw := range network {
+		fill := [][]string{
+			{
+				netw.Properties.Name,
+				netw.Properties.LocationCountry,
+				netw.Properties.NetworkType,
+				netw.Properties.Status,
+			},
+		}
+		networkinfos = append(networkinfos, fill...)
+	}
+```
+### List Storage
+___
+
+```go
 
 	storage, _ := client.GetStorageList(ctx)
 	var storageinfos [][]string
@@ -46,21 +77,11 @@ func main(){
 		}
 		storageinfos = append(storageinfos, fill...)
 	}
+```
+### Print everything
+___
 
-	network, _ := client.GetNetworkList(ctx)
-	var networkinfos [][]string
-	for _, netw := range network {
-		fill := [][]string{
-			{
-				netw.Properties.Name,
-				netw.Properties.LocationCountry,
-				netw.Properties.NetworkType,
-				netw.Properties.Status,
-			},
-		}
-		networkinfos = append(networkinfos, fill...)
-	}
-
+```go
 	// Printing Tables
 	render.Table(out, []string{"server-name", "cores", "memory", "status"}, serverinfos)
 	render.Table(out, []string{"storage-name", "capacity", "storage-type", "status"}, storageinfos)
@@ -72,3 +93,4 @@ func main(){
 }	
 
 ```
+
