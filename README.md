@@ -88,8 +88,9 @@ ___
 	render.Table(out, []string{"network-name", "location", "network-type", "status"}, networkinfos)
 	fmt.Print(out)
 
-	// Printing JSON just for test, you will need   | jq   to see the pretty version :)
-	render.AsJSON(servers, network, storage)
+	// Printing JSON
+	render.AsJSON(out, servers, network, storage)  // You can add slices variadic to out
+	fmt.Print(out)
 }	
 
 ```
