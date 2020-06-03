@@ -18,9 +18,7 @@ func main(){
 
 	out := new(bytes.Buffer)
 ```
-### List Servers
-___
-
+# List Servers
 ```go
 	servers, _ := client.GetServerList(ctx)
 	var serverinfos [][]string
@@ -38,11 +36,8 @@ ___
 
 	}
 ```
-### List Networks
-___
-
+# List Networks
 ```go
-
 	network, _ := client.GetNetworkList(ctx)
 	var networkinfos [][]string
 	for _, netw := range network {
@@ -57,11 +52,8 @@ ___
 		networkinfos = append(networkinfos, fill...)
 	}
 ```
-### List Storage
-___
-
+# List Storage
 ```go
-
 	storage, _ := client.GetStorageList(ctx)
 	var storageinfos [][]string
 	for _, stor := range storage {
@@ -78,9 +70,7 @@ ___
 		storageinfos = append(storageinfos, fill...)
 	}
 ```
-### Print everything
-___
-
+# Print everything
 ```go
 	// Printing Tables
 	render.Table(out, []string{"server-name", "cores", "memory", "status"}, serverinfos)
@@ -94,4 +84,3 @@ ___
 }	
 
 ```
-
