@@ -6,9 +6,8 @@ import (
 	"io"
 	"strings"
 
-	"github.com/rodaine/table"
+	"github.com/gridscale/table"
 )
-
 // Table prints a table to the given io.Writer. example render.Table
 func Table(buf io.Writer, columns []string, rows [][]string) {
 
@@ -31,9 +30,9 @@ func Table(buf io.Writer, columns []string, rows [][]string) {
 }
 
 // AsJSON prints infos as JSON instead table
-func AsJSON(s ...interface{}) {
+func AsJSON(buf io.Writer, s ...interface{}) {
 	json, _ := json.Marshal(s)
-	fmt.Printf("%s\n", json)
+	buf.Write([]byte(fmt.Sprintf("%s\n", json)))
 }
 
 func init() {
