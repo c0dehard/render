@@ -1,7 +1,6 @@
-
-
-# Example if you'd like to use **render** for [gscloud](https://github.com/gridscale/gscloud)
-
+# Important
+This is no longer up to date as we made a few changes in [gsclouds version of render](https://github.com/gridscale/gscloud/tree/develop/render/)
+## Old example of **render** for [gscloud](https://github.com/gridscale/gscloud)
 ```go
 func main(){
   config := gsclient.NewConfiguration(
@@ -15,15 +14,13 @@ func main(){
 	)
 	client := gsclient.NewClient(config)
 	ctx := context.Background()
-
 	out := new(bytes.Buffer)
 ```
-# List Servers
+## List Servers
 ```go
 	servers, _ := client.GetServerList(ctx)
 	var serverinfos [][]string
 	for _, server := range servers {
-
 		fill := [][]string{
 			{
 				server.Properties.Name,
@@ -33,10 +30,9 @@ func main(){
 			},
 		}
 		serverinfos = append(serverinfos, fill...)
-
 	}
 ```
-# List Networks
+## List Networks
 ```go
 	network, _ := client.GetNetworkList(ctx)
 	var networkinfos [][]string
@@ -52,14 +48,12 @@ func main(){
 		networkinfos = append(networkinfos, fill...)
 	}
 ```
-# List Storage
+## List Storage
 ```go
 	storage, _ := client.GetStorageList(ctx)
 	var storageinfos [][]string
 	for _, stor := range storage {
-
 		fill := [][]string{
-
 			{
 				stor.Properties.Name,
 				strconv.FormatInt(int64(stor.Properties.Capacity), 10),
@@ -70,7 +64,7 @@ func main(){
 		storageinfos = append(storageinfos, fill...)
 	}
 ```
-# Print everything
+## Print to stdout (e.g.)
 ```go
 	// Printing Tables
 	render.Table(out, []string{"server-name", "cores", "memory", "status"}, serverinfos)
